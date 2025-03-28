@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<scenes>
+    <scene name="AI">
+        <case id="PERF_001" required="True" />
+        <case id="PERF_002" required="True" />
+        <case id="DFX_001" required="True" />
+        <case id="DFX_002" required="True" />
+        <case id="EXP_001" required="True" />
+    </scene>
+
+    <scene name="AI_PERF_DFX">
+        <case id="PERF_001" required="True" />
+        <case id="PERF_002" required="True" />
+        <case id="DFX_001" required="True" />
+        <case id="DFX_002" required="True" />
+    </scene>
+
+    <scene name="AI_EXP">
+        <case id="EXP_001" required="True" />
+    </scene>
+
+   <!-- ZZJ 自定义 vdbench 用例 -->
+    <scene name="ZZJ">
+        <!-- 跑 50:50 的读写性能测试 -->
+        <case id="16K_RW" required="True" />
+        <case id="64K_RW" required="True" />
+        <!-- 以 AI 场景下跑 50:50 的读写性能测试 -->
+        <case id="AI_16K" required="True" />
+        <case id="AI_64K" required="True" />
+    </scene>
+
+    <!-- QQ_PHOTO_ALBUM -->
+    <scene name="QQ_PHOTO_ALBUM">
+        <case id="PHOTO_AVG" required="True" />
+    </scene>
+</scenes>

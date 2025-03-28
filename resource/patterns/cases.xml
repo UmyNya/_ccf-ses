@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cases xmlns="ses:cases">
+    <case id="PERF_001" category="performance" name="AI训练存储性能（OPS性能）">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <parameter name="config_template_file">vdbench/multi_thread_large_io_rw_as_prepare.txt</parameter>
+            <!-- 16k rw 50:50 -->
+            <!-- <parameter name="config_template_file">vdbench/perf001_16k_rw.txt</parameter> -->
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case>
+
+    <case id="PERF_002" category="performance" name="AI训练存储性能（带宽性能）">
+        <parameters>
+            <parameter name="config_template_file">vdbench/multi_thread_large_io_rw_as_mix.txt</parameter>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n2</parameter>
+            <parameter name="multiple">6</parameter>
+        </parameters>
+    </case>
+
+    <case id="DFX_001" category="reliability" name="系统数据盘冗余故障">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <parameter name="config_template_file">vdbench/multi_thread_large_io_rw_as_mix.txt</parameter>
+            <parameter name="threads_config">$$thread_n2</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="multiple">6</parameter>
+        </parameters>
+    </case>
+    <case id="DFX_002" category="reliability" name="接口卡冗余故障">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <parameter name="threads_config">$$thread_n2</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="config_template_file">vdbench/multi_thread_large_io_rw_as_mix.txt</parameter>
+            <parameter name="multiple">6</parameter>
+        </parameters>
+    </case>
+
+    <case id="EXP_001" category="expansion" name="节点和容量在线扩展">
+        <parameters>
+            <parameter name="config_template_file">vdbench/multi_thread_large_io_rw_as_mix.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n2</parameter>
+            <parameter name="multiple">6</parameter>
+        </parameters>
+    </case>
+
+    <!-- ZZJ 自定义 vdbench 用例-->
+    <case id="16K_RW" category="performance" name="存储性能（OSP+BW）-16k读写">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <!-- rw 50:50 -->
+            <parameter name="config_template_file">vdbench/16k_rw.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case>
+    
+    <case id="64K_RW" category="performance" name="存储性能（OSP+BW）-64k读写">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <!-- rw 50:50 -->
+            <parameter name="config_template_file">vdbench/64k_rw.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case>
+
+    <case id="AI_16K" category="performance" name="AI 场景文件环境下的存储性能（OSP+BW）-16k读写">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <!-- rw 50:50 -->
+            <parameter name="config_template_file">vdbench/ai_16k.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case>
+
+    <case id="AI_64K" category="performance" name="AI 场景文件环境下的存储性能（OSP+BW）-64k读写">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <!-- rw 50:50 -->
+            <parameter name="config_template_file">vdbench/ai_64k.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case>
+
+
+    <!-- QQ_PHOTO_ALBUM -->
+    <!-- category 在 constants.py 中的 CaseCategory 类中定义。 -->
+    <case id="PHOTO_AVG" category="performance" name="QQ相册平均负载">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <parameter name="config_template_file">vdbench/photo_avg.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case>
+</cases>

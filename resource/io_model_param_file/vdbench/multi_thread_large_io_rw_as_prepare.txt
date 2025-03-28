@@ -1,0 +1,17 @@
+hd=default,shell=ssh,vdbench=$vdbench_dir,user=root
+
+fsd=default,openflags=o_direct,shared=yes
+tmp=fsd,depth=$depth,width=$width,files=360,size=(64K,67,128K,33)
+tmp=fsd,depth=$depth,width=$width,files=40,size=(1M,50,2M,20,8M,10,128M,10,1G,10)
+
+fwd=default,thread=$thread
+tmp=fwd,fsd=all,operation=read,xfersize=32k,fileio=sequential,fileselect=sequential,skew=20
+tmp=fwd,fsd=all,operation=getattr,xfersize=32k,fileio=sequential,fileselect=sequential,skew=20
+tmp=fwd,fsd=all,operation=read,xfersize=12k,fileio=sequential,fileselect=sequential,skew=10
+tmp=fwd,fsd=all,operation=write,xfersize=12k,fileio=sequential,fileselect=sequential,skew=10
+tmp=fwd,fsd=all,operation=read,xfersize=64k,fileio=sequential,fileselect=sequential,skew=10
+tmp=fwd,fsd=all,operation=write,xfersize=64k,fileio=sequential,fileselect=sequential,skew=10
+tmp=fwd,fsd=all,operation=read,xfersize=8k,fileio=sequential,fileselect=sequential,skew=10
+tmp=fwd,fsd=all,operation=write,xfersize=8k,fileio=sequential,fileselect=sequential,skew=10
+
+rd=rd1,fwd=(fwd*),fwdrate=$fwdrate,format=$format,elapsed=$elapsed,interval=1

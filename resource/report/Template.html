@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-size: 14px;
+        }
+
+        pre {
+            font-family: Calibri, system-ui;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        #title {
+            margin-bottom: 50px;
+        }
+
+        /*右侧主内容*/
+        #content {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px 20px 20px 50px;
+            overflow-y: auto;
+        }
+
+        .sep-line {
+            border-top: 1px solid #e3e3e3;
+        }
+
+        /* 通用 *******************************************************/
+        .default-table {
+            border-collapse: collapse;
+        }
+
+        .default-table tr {
+            border-bottom: 1px solid #d9d9d9;
+            border-top: 1px solid #d9d9d9;
+        }
+
+        .default-table td {
+            padding: 5px 10px;
+            min-width: 100px;
+            text-align: left;
+        }
+
+        .default-table th {
+            padding: 5px 10px;
+            text-align: left;
+        }
+
+        .comment {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #9b9b9b;
+        }
+
+        /* 总览 *******************************************************/
+        #report-summary {
+            margin-bottom: 50px;
+        }
+
+        /*用例总览表*/
+        #summary-table {
+            margin-bottom: 10px;
+        }
+
+        #summary-table .prefix {
+            color: #9b9b9b;
+        }
+
+        .device-table {
+            margin-top: 20px;
+        }
+
+        /* 测试参数*/
+        .summary-parameters {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        /*收缩按钮 *******************************************************/
+        .triangle-wrapper {
+            display: inline-block;
+            cursor: pointer;
+            width: 10px;
+            height: 10px;
+        }
+
+        .triangle {
+            margin-left: 5px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        .up {
+            border-bottom: 5px solid #9b9b9b;
+        }
+
+        .down {
+            border-top: 5px solid #9b9b9b;
+        }
+
+        /*收缩按钮与内容的间距*/
+        .collapse_button_sep {
+            height: 10px;
+        }
+
+        .inline-block-element {
+            display: inline-block;
+        }
+
+        .hidden-by-button {
+            display: none;
+        }
+
+        /*侧边栏 ********************************************************/
+        .sidebar {
+            overflow-x: scroll;
+            overflow-y: auto;
+            width: 18%;
+            max-height: 100%;
+            background-color: #f9f9f9;
+            border-right: 1px solid #f1f0f0;
+            transition: width 0.3s ease, padding 0.5s ease;
+        }
+
+        .sidebar li > a {
+            color: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .sidebar li > a:hover {
+            color: #4169E1;
+        }
+
+        .sidebar.collapsed {
+            width: 0;
+            padding-left: 0;
+            padding-right: 0;
+            white-space: nowrap
+        }
+
+        .sidebar.collapsed::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        /* 目录*/
+        #toc {
+            padding-top: 10px;
+            padding-left: 20px;
+            overflow-x: auto;
+            height: calc(100% - 50px);
+        }
+
+        #sidebar-footer {
+            width: 18%;
+            border-top: 1px solid #f1f0f0;
+            background-color: #f9f9f9;
+            position: absolute;
+            bottom: 0;
+            padding: 20px 0px;
+            color: grey;
+            text-align: center;
+            transition: margin 0.3s ease;
+        }
+
+        #sidebar-footer.collapsed {
+            margin-left: -18%
+        }
+
+        #sidebar-toggle-btn.collapsed {
+            left: -0px;
+        }
+
+        #sidebar-toggle-btn {
+            position: relative;
+            top: 40%;
+            background-color: #fff;
+            box-shadow: 0 0 8px #dddcdc;
+            color: #777676;
+            width: 25px;
+            height: 40px;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            z-index: 1;
+            font-family: serif;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* 用例 ********************************************************/
+
+        /*用例类型标题*/
+        .category {
+            margin-top: 50px;
+        }
+
+        .case {
+            margin-top: 50px;
+        }
+
+        /*用例标题*/
+        .case h3 {
+            padding: 5px 0;
+            background-color: #f1f5fc;
+        }
+
+        /*用例标题中的id*/
+        .case h3 > span {
+            color: #cccccc;
+            font-weight: normal;
+            font-size: 12px;
+            float: right;
+            padding-right: 5px;
+            padding-top: 2px;
+        }
+
+        .case li {
+            padding: 3px 0;
+        }
+
+        .case-summary {
+            margin-bottom: 20px;
+        }
+
+        .case-sum-message {
+            #padding: 20px 0;
+        }
+
+        /*图标标题*/
+        .case-content h4 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        /*执行记录表*/
+        .case-content .record-table {
+            margin-top: 40px;
+        }
+
+        .case-result {
+            padding: 0 5px;
+            font-weight: bold;
+        }
+
+        span.case-result-pass {
+            background-color: #52b720;
+            color: white;
+        }
+
+        li.case-result-pass::marker {
+            color: #52b720;
+        }
+
+        span.case-result-failed {
+            background-color: red;
+            color: white;
+        }
+
+        li.case-result-failed::marker {
+            color: red;
+        }
+
+        span.case-result-skipped {
+            background-color: #fa9818;
+            color: white;
+        }
+
+        li.case-result-skipped::marker {
+            color: #fa9818;
+        }
+
+        .case-result-unknown {
+            color: black;
+        }
+
+
+    </style>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div id="container">
+    <div id="sidebar" class="sidebar">
+        <div id="toc">
+            <h2 style="padding-top: 20px;">目录</h2>
+        </div>
+        <div id="sidebar-footer">
+
+        </div>
+    </div>
+    <button id="sidebar-toggle-btn" onclick="toggleSideBar()"><<</button>
+    <div id="content">
+    </div>
+</div>
+</body>
+<script>
+    // 折叠/显示侧边栏
+    function toggleSideBar() {
+        var sidebar = document.getElementById('sidebar');
+        var sidebarFooter = document.getElementById('sidebar-footer');
+        sidebar.classList.toggle('collapsed');
+        sidebarFooter.classList.toggle('collapsed');
+
+        var toggleBtn = document.getElementById('sidebar-toggle-btn');
+        toggleBtn.classList.toggle('collapsed');
+        if (toggleBtn.textContent === "<<") {
+            toggleBtn.textContent = ">>"
+        } else {
+            toggleBtn.textContent = "<<"
+        }
+    }
+
+
+    // 折叠/显示其他相邻元素
+    function toggleSiblings(button) {
+        let nextSibling = button.nextElementSibling;
+        while (nextSibling) {
+            nextSibling.classList.toggle('hidden-by-button');
+            nextSibling = nextSibling.nextElementSibling;
+        }
+        const arrow = button.firstElementChild;
+        arrow.classList.toggle('up');
+        arrow.classList.toggle('down');
+    }
+
+    function onLoad() {
+        // 折叠元素
+        const expandButtons = document.querySelectorAll('[data-expand]');
+        expandButtons.forEach(btn => {
+            if (btn.getAttribute("data-expand") === "False") {
+                toggleSiblings(btn)
+            }
+        });
+    }
+
+    window.onload = onLoad;
+</script>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="ses:cases"
+           elementFormDefault="qualified">
+
+    <!-- 根元素 -->
+    <xs:element name="cases">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="case" type="caseType" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- case元素 -->
+    <xs:complexType name="caseType">
+        <!-- 子元素 -->
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="dataset" type="datasetType" minOccurs="0"/>
+            <xs:element name="parameters" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="parameter" type="parameterType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="precondition" type="stageType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="procedure" type="stageType" minOccurs="0"/>
+            <xs:element name="postcondition" type="stageType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="category" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="performance"/>
+                    <xs:enumeration value="reliability"/>
+                    <xs:enumeration value="ecology"/>
+                    <xs:enumeration value="security"/>
+                    <xs:enumeration value="capacity"/>
+                    <xs:enumeration value="efficiency"/>
+                    <xs:enumeration value="expansion"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="require_storage" type="xs:boolean"/>
+
+    </xs:complexType>
+
+    <!-- 测试数据 -->
+    <xs:complexType name="datasetType">
+        <xs:sequence>
+            <xs:element name="data" minOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="parameter" type="parameterType"/>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+
+    </xs:complexType>
+
+
+    <!-- parameter类型 -->
+    <xs:complexType name="parameterType">
+        <xs:simpleContent>
+            <xs:restriction base="xs:token">
+                <xs:attribute name="name" type="xs:string" use="optional"/>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- 用例步骤 -->
+    <xs:complexType name="stageType">
+        <xs:sequence>
+            <xs:element name="step" type="stepType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="stepType">
+        <xs:sequence>
+            <xs:element name="arg" type="parameterType"/>
+            <xs:element name="expect" type="xs:simpleType"/>
+            <xs:element name="report" type="xs:simpleType"/>
+        </xs:sequence>
+        <xs:attribute name="class" type="xs:string" use="required"/>
+        <xs:attribute name="action" type="xs:string" use="required"/>
+        <xs:attribute name="target" type="xs:string" use="required"/>
+        <xs:attribute name="output" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>
