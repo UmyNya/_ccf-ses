@@ -3,8 +3,8 @@ from storage_evaluation_system_zzj.testcases.performance.perf_base import PERFBa
 from storage_evaluation_system_zzj.indicator import Ops, SingleOps,Bandwidth, SingleBandwidth
 
 
-class PERF_AI_64K(PERFBase):
-    """AI训练存储性能（OPS性能）"""
+class PHOTO_READ(PERFBase):
+    """QQ相册负载(读)"""
 
     # def register_indicator(self):
     #     total_node_num = self.get_parameter("total_node_num", int)

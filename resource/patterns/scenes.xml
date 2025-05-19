@@ -32,6 +32,12 @@
 
     <!-- QQ_PHOTO_ALBUM -->
     <scene name="QQ_PHOTO_ALBUM">
-        <case id="PHOTO_AVG" required="True" />
+        <case id="PHOTO_READ" required="True" />
+        <case id="PHOTO_WRITE" required="True" />
+        <case id="PHOTO_80R20W" required="True" />
+        <case id="PHOTO_50R50W" required="True" />
+        <case id="DFX_001" required="True" />
+        <case id="DFX_002" required="True" />
+        <case id="EXP_001" required="True" />
     </scene>
 </scenes>

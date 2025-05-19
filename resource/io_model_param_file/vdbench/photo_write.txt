@@ -13,3 +13,4 @@ tmp=fwd,fsd=all,operation=write,xfersize=182k,fileio=sequential,fileselect=seque
 tmp=fwd,fsd=all,operation=write,xfersize=4k,fileio=sequential,fileselect=sequential,skew=5
 
 rd=rd1,fwd=(fwd*),fwdrate=$fwdrate,format=$format,elapsed=$elapsed,interval=1
+ 
