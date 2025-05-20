@@ -44,6 +44,12 @@ class SingleOps(__Indicator):
 
     def __init__(self, ops: float, total_node_num: int):
         self._value = round(ops / total_node_num)
+        
+class Resp(__Indicator):
+    name = "总体平均响应时间(Resp)"
+
+    def __init__(self, resp: float):
+        self._value = round(resp)
 
 
 class Continuity(__Indicator):

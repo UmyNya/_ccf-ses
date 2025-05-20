@@ -2,7 +2,7 @@
 from storage_evaluation_system_zzj import constants
 from storage_evaluation_system_zzj.action.vdbench import VdbenchIO
 from storage_evaluation_system_zzj.basecase import BaseCase
-from storage_evaluation_system_zzj.indicator import Bandwidth, Ops
+from storage_evaluation_system_zzj.indicator import Bandwidth, Ops, Resp
 from storage_evaluation_system_zzj.report import ReportUtil, TitledContent
 
 
@@ -31,7 +31,7 @@ class PERFBase(BaseCase):
             fsd_width=self.get_parameter("fsd_width", int),
             elapsed=constants.VDBENCH_ELAPSED,
             multiple=self.get_parameter("multiple", int),
-            dir_depth=self.get_parameter("dir_depth", ptype=int, default=1)
+            dir_depth=self.get_parameter("dir_depth", ptype=int, default=1),
         )
         self.bw = self.vdbench.get_avg_bw()
         self.ops = self.vdbench.get_avg_ops()
@@ -46,11 +46,13 @@ class PERFBase(BaseCase):
         self.reporter = self.vdbench.reporter
         csv_file, avg_csv_file = self.reporter.create_csv_file()
         # 生成性能图
-        soup = ReportUtil.build_perf_test_html_object(csv_file,
-                                                      avg_csv_file,
-                                                      self.reporter.create_common_chart,
-                                                      self.reporter.create_common_avg_table)
+        soup = ReportUtil.build_perf_test_html_object(
+            csv_file,
+            avg_csv_file,
+            self.reporter.create_common_chart,
+            self.reporter.create_common_avg_table,
+        )
         return soup
 
     def register_indicator(self):
-        return Bandwidth(self.bw), Ops(self.ops)
+        return Bandwidth(self.bw), Ops(self.ops), Resp(self.resp)
