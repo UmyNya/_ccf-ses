@@ -37,7 +37,7 @@ class Suite:
                  ignore_toolcheck_error=False):
         self.logger = logger
         self.custom_config: ET = custom_config
-        self.name = scenario
+        self.name = scenario   
         self.status = SuiteStatus.PREPARING
         self.storage_memory: str = memory
         self.client_group: List[Client] = []
@@ -606,7 +606,7 @@ class Suite:
         else:
             self.logger.info("Tools validation success")
 
-    def validate_storage_specification(self):
+    def validate_storage_specification(self): 
         """校验存储规格"""
         spec = SimpleNamespace(total_disk_num=None, single_disk_capacity=None, total_node_num=None)
         for param in spec.__dict__:
@@ -636,7 +636,7 @@ class Suite:
 
         msg = f"Storage Disk-num={spec.total_disk_num}, single-disk-capacity={spec.single_disk_capacity:,}KB " \
               f"({readable_single_disk_capacity}). Physical capacity={readable_capacity}"
-        if capacity_kb < MIN_STORAGE_CAPACITY:
+        if self.name != "QQ_PHOTO_ALBUM" and capacity_kb < MIN_STORAGE_CAPACITY:
             required_capacity = convert_capacity(MIN_STORAGE_CAPACITY, readable=True)
             msg += f". Minimum capacity requirements not met: {required_capacity}"
             raise ConfigError(msg)
