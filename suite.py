@@ -140,9 +140,16 @@ class Suite:
         except Exception:
             raise ConfigError(f"Invalid storage_available_capacity value='{storage_a_cap}'")
         logger.debug(f"storage_cap = {storage_cap}KB")
-
+        
+        min_data_size_kb
+        
         # 获取预埋最小数据量
-        min_data_size_kb = max(host_total_mem * 2, storage_mem * 5, int(storage_cap * 0.1))
+        if self.name == "QQ_PHOTO_ALBUM":
+            min_data_size_kb = max(host_total_mem * 2, storage_mem * 5, int(storage_cap * 0.6))
+        else:
+            min_data_size_kb = max(host_total_mem * 2, storage_mem * 5, int(storage_cap * 0.1))
+        
+        
         min_data_size_r = convert_capacity(min_data_size_kb, readable=True)
         # 获取根据用户配置计算预埋数据量
         custom_data_size_kb = self._cal_custom_data_size()
