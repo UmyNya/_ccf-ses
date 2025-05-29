@@ -17,24 +17,33 @@ DEFAULT_MON = "ses.mon"
 # BENCHMARK_CASE_ID = "PERF_002"
 BENCHMARK_CASE_ID = "NOT_PERF_CASES"
 
-CONFIGURABLE_HD_CASE_LIST = ["PERF_001", "PERF_002", "16K_RW","64K_RW","AI_16K","AI_64K",
-                             "PHOTO_READ","PHOTO_WRITE","PHOTO_80R20W","PHOTO_50R50W",
-                             "NOT_PERF_CASES"]
+CONFIGURABLE_HD_CASE_LIST = [
+    "PERF_001",
+    "PERF_002",
+    "16K_RW",
+    "64K_RW",
+    "AI_16K",
+    "AI_64K",
+    "PHOTO_READ",
+    "PHOTO_WRITE",
+    "PHOTO_80R20W",
+    "PHOTO_50R50W",
+    "PHOTO_PERF",
+    "NOT_PERF_CASES",
+]
 
 # 用例间休眠
-CASE_RUN_INTERVAL = 60 # 300
+CASE_RUN_INTERVAL = 60  # 300
 
 # 参与测评存储的最小容量(KB）：200T -> 200G
 # MIN_STORAGE_CAPACITY = 200 * 1024 * 1024 * 1024
 MIN_STORAGE_CAPACITY = 200 * 1024 * 1024
 
 # 工具配置
-ToolInfo = namedtuple('ToolInfo', ['env_name', 'default_dir_name', 'executable'])
-TOOL_BASE_DIR_UNIX = '/opt/ses'
-TOOL_BASE_DIR_WIN = 'C:\\Program Files\\ses'
-TOOL_VALIDATE_DICT = {
-    "vdbench": ToolInfo("VDB_DIR", "vdb", "vdbench")
-}
+ToolInfo = namedtuple("ToolInfo", ["env_name", "default_dir_name", "executable"])
+TOOL_BASE_DIR_UNIX = "/opt/ses"
+TOOL_BASE_DIR_WIN = "C:\\Program Files\\ses"
+TOOL_VALIDATE_DICT = {"vdbench": ToolInfo("VDB_DIR", "vdb", "vdbench")}
 
 # sysstat工具获取本地磁盘读写间隔（秒）
 IOSTAT_INTERVAL = 5
@@ -44,13 +53,13 @@ IOSTAT_INTERVAL = 5
 VDBENCH_FSD_GROUP_SIZE = 4706 * 1024
 VDBENCH_DEPTH = 4
 VDBENCH_MON_FILE = "ses_vdb.mon"
-VDBENCH_STABLE_TIME = 150 #300
+VDBENCH_STABLE_TIME = 150  # 300
 VDBENCH_ELAPSED_PRE = 5
-VDBENCH_ELAPSED =  180 # 6 * 60 * 60 #600
-VDBENCH_LONG_OP_ELAPSED = 300 # 4 * 60 * 60 #4 * 60 * 60
-VDBENCH_AVG_CONTINUOUS_TIME = 180 #2 * 60 * 60 #600
+VDBENCH_ELAPSED = 180  # 6 * 60 * 60 #600
+VDBENCH_LONG_OP_ELAPSED = 300  # 4 * 60 * 60 #4 * 60 * 60
+VDBENCH_AVG_CONTINUOUS_TIME = 180  # 2 * 60 * 60 #600
 # vdbench执行完成 到进程结束的等待时长
-VDBENCH_PROC_END_TIMEOUT = 60 #600
+VDBENCH_PROC_END_TIMEOUT = 60  # 600
 
 
 VDBENCH_WARMUP = 60
@@ -70,17 +79,47 @@ FAULT_RECOVER_TIMEOUT = 3600
 
 # 设备信息表
 DEVICE_INFO_MAP = {
-    "storage": ["MODEL", "TOTAL_NODE_NUM", "CPU_MODEL_AND_NUM", "MEMORY", "HARD_DRIVE_TYPE",
-                "SINGLE_DISK_CAPACITY", "NUMBER_OF_HARD_DRIVE", "EC_OR_RAID_RATIO", "INTERFACE_TYPE", "INTERFACE_RATE",
-                "NUMBER_OF_INTERFACES", "SOFTWARE_VERSION"],
-    "storage_ch": ["机型", "控制器/节点数量", "CPU型号*总数", "内存", "硬盘类型",
-                   "硬盘单盘容量", "硬盘数量", "EC/RAID比例", "业务接口类型", "业务接口速率",
-                   "业务接口数量", "软件版本"]
+    "storage": [
+        "MODEL",
+        "TOTAL_NODE_NUM",
+        "CPU_MODEL_AND_NUM",
+        "MEMORY",
+        "HARD_DRIVE_TYPE",
+        "SINGLE_DISK_CAPACITY",
+        "NUMBER_OF_HARD_DRIVE",
+        "EC_OR_RAID_RATIO",
+        "INTERFACE_TYPE",
+        "INTERFACE_RATE",
+        "NUMBER_OF_INTERFACES",
+        "SOFTWARE_VERSION",
+    ],
+    "storage_ch": [
+        "机型",
+        "控制器/节点数量",
+        "CPU型号*总数",
+        "内存",
+        "硬盘类型",
+        "硬盘单盘容量",
+        "硬盘数量",
+        "EC/RAID比例",
+        "业务接口类型",
+        "业务接口速率",
+        "业务接口数量",
+        "软件版本",
+    ],
 }
 
-DEVICE_INFO_TYPE = ["CLIENT", "CPU", "SYSTEM", "SYSTEM_TYPE",
-                    "STORAGE_PROTOCOL/SOFTWARE", "NETWORKING", "HARDWARE", "COMPUTE_NODES"]
-SCENE_TYPES = ["AI", "AI_PERF_DFX", "AI_EXP","ZZJ","QQ_PHOTO_ALBUM"]
+DEVICE_INFO_TYPE = [
+    "CLIENT",
+    "CPU",
+    "SYSTEM",
+    "SYSTEM_TYPE",
+    "STORAGE_PROTOCOL/SOFTWARE",
+    "NETWORKING",
+    "HARDWARE",
+    "COMPUTE_NODES",
+]
+SCENE_TYPES = ["AI", "AI_PERF_DFX", "AI_EXP", "ZZJ", "PHOTO_ALBUM"]
 
 # 性能用例时延最大值（毫秒）
 MAX_IO_RESP = 10
@@ -92,6 +131,7 @@ PERF_BENCHMARK_TOLERATE = 0.2
 
 class SuiteStatus(Enum):
     """测试套状态"""
+
     PREPARING = 0
     PREPARED = 1
     RUNNING = 2
@@ -102,6 +142,7 @@ class SuiteStatus(Enum):
 
 class CaseStatus(Enum):
     """用例状态"""
+
     WAITING = 0
     RUNNING = 1
     COMPLETED = 2
@@ -109,6 +150,7 @@ class CaseStatus(Enum):
 
 class CaseResult(str, Enum):
     """用例结果"""
+
     UNKNOWN = "Unknown"
     PASS = "Pass"
     FAILED = "Failed"
@@ -118,6 +160,7 @@ class CaseResult(str, Enum):
 
 class RecordResult(str, Enum):
     """用例步骤结果"""
+
     UNKNOWN = "-"
     PASS = "Pass"
     FAILED = "Failed"
@@ -125,6 +168,7 @@ class RecordResult(str, Enum):
 
 class CaseCategory(str, Enum):
     """测试类型（报告以此排序）"""
+
     PERFORMANCE = "性能测试"
     RELIABILITY = "可靠性测试"
     ECOLOGY = "生态测试"
@@ -136,6 +180,7 @@ class CaseCategory(str, Enum):
 
 class ClientTarget(str, Enum):
     """环境类型"""
+
     MASTER_HOST = "master_host"
     ALL_HOST = "all_host"
     MASTER_STORAGE_HTTP = "master_storage_http"

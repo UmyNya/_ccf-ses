@@ -141,7 +141,7 @@ class Suite:
             raise ConfigError(f"Invalid storage_available_capacity value='{storage_a_cap}'")
         logger.debug(f"storage_cap = {storage_cap}KB")
         
-        min_data_size_kb
+        min_data_size_kb = 0
         
         # 获取预埋最小数据量
         if self.name == "QQ_PHOTO_ALBUM":

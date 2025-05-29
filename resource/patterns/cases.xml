@@ -98,46 +98,56 @@
 
     <!-- QQ_PHOTO_ALBUM -->
     <!-- category 在 constants.py 中的 CaseCategory 类中定义。 -->
-    <case id="PHOTO_READ" category="performance" name="QQ相册负载(读)">
+    <case id="PHOTO_PERF" category="performance" name="互联网相册负载性能测试">
         <parameters>
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
-            <parameter name="config_template_file">vdbench/photo_read.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_80r20w.txt</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
             <parameter name="threads_config">$$thread_n1</parameter>
             <parameter name="multiple">16</parameter>
         </parameters>
     </case>
-    <case id="PHOTO_WRITE" category="performance" name="QQ相册负载(写)">
+    <!-- <case id="PHOTO_READ" category="performance" name="互联网相册负载(读)">
         <parameters>
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
-            <parameter name="config_template_file">vdbench/photo_write.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_read.txt</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
             <parameter name="threads_config">$$thread_n1</parameter>
             <parameter name="multiple">16</parameter>
         </parameters>
     </case>
-    <case id="PHOTO_80R20W" category="performance" name="QQ相册负载(80%读 20%写)">
+    <case id="PHOTO_WRITE" category="performance" name="互联网相册负载(写)">
         <parameters>
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
-            <parameter name="config_template_file">vdbench/photo_80r20w.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_write.txt</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
             <parameter name="threads_config">$$thread_n1</parameter>
             <parameter name="multiple">16</parameter>
         </parameters>
     </case>
-    <case id="PHOTO_50R50W" category="performance" name="QQ相册负载(50%读 50%写)">
+    <case id="PHOTO_80R20W" category="performance" name="互联网相册负载(80%读 20%写)">
         <parameters>
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
-            <parameter name="config_template_file">vdbench/photo_50r50w.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_80r20w.txt</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
             <parameter name="threads_config">$$thread_n1</parameter>
             <parameter name="multiple">16</parameter>
         </parameters>
     </case>
+
+    <case id="PHOTO_50R50W" category="performance" name="互联网相册负载(50%读 50%写)">
+        <parameters>
+            <parameter name="vdbench_dir">$$vdbench_dir</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_50r50w.txt</parameter>
+            <parameter name="anchor_paths">$$anchor_paths</parameter>
+            <parameter name="threads_config">$$thread_n1</parameter>
+            <parameter name="multiple">16</parameter>
+        </parameters>
+    </case> -->
     <case id="DFX_001" category="reliability" name="系统数据盘冗余故障">
         <parameters>
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
-            <parameter name="config_template_file">vdbench/photo_80r20w.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_80r20w.txt</parameter>
             <parameter name="threads_config">$$thread_n2</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
             <parameter name="multiple">6</parameter>
@@ -148,14 +158,14 @@
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
             <parameter name="threads_config">$$thread_n2</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
-            <parameter name="config_template_file">vdbench/photo_80r20w.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_80r20w.txt</parameter>
             <parameter name="multiple">6</parameter>
         </parameters>
     </case>
 
     <case id="EXP_001" category="expansion" name="节点和容量在线扩展">
         <parameters>
-            <parameter name="config_template_file">vdbench/photo_80r20w.txt</parameter>
+            <parameter name="config_template_file">vdbench/photo_album/photo_80r20w.txt</parameter>
             <parameter name="anchor_paths">$$anchor_paths</parameter>
             <parameter name="threads_config">$$thread_n2</parameter>
             <parameter name="multiple">6</parameter>
