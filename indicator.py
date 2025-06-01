@@ -46,7 +46,7 @@ class SingleOps(__Indicator):
         self._value = round(ops / total_node_num)
         
 class Resp(__Indicator):
-    name = "总体平均响应时间(Resp)"
+    name = "平均响应时间(ms)"
 
     def __init__(self, resp: float):
         self._value = round(resp)
