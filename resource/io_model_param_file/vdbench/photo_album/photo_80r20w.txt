@@ -1,7 +1,7 @@
 hd=default,shell=ssh,vdbench=$vdbench_dir,user=root
 
 fsd=default,openflags=o_direct,shared=yes   
-tmp=fsd,depth=$depth,width=$width,files=1000,size=(11K,35,36K,15,17K,13,73K,13,56K,8,182K,6,4K,10)
+tmp=fsd,depth=$depth,width=$width,files=100000,size=(11K,35,36K,15,17K,13,73K,13,56K,8,182K,6,4K,10)
 
 fwd=default,thread=$thread
 tmp=fwd,fsd=all,operation=read,xfersize=11k,fileio=sequential,fileselect=(poisson,10),skew=36
