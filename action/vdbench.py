@@ -1198,6 +1198,7 @@ class VdbenchReporter:
         self.labels = [
             {"name": "Rate", "ylabel": "ops"},
             {"name": "MB/sec", "ylabel": "MB"},
+            {"name": "resp", "ylabel": "ms"},
         ]
 
     @property
@@ -1278,6 +1279,10 @@ class VdbenchReporter:
             labels.append(f"{_op}_rate")
             if op in ["read", "write"]:
                 labels.append(f"MB_{op}")
+            try:
+                labels.append(f"{_op}_resp")
+            except:
+                print("zzj error:1")
         avg_cols.extend(labels)
 
         avg_cols_str = " ".join(avg_cols)
