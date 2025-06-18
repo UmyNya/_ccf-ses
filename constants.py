@@ -28,8 +28,8 @@ CONFIGURABLE_HD_CASE_LIST = [
 CASE_RUN_INTERVAL = 60  # 300
 
 # 参与测评存储的最小容量(KB）：
-# MIN_STORAGE_CAPACITY = 200 * 1024 * 1024 * 1024
-MIN_STORAGE_CAPACITY = 200 * 1024 * 1024
+MIN_STORAGE_CAPACITY = 200 * 1024 * 1024 * 1024
+# MIN_STORAGE_CAPACITY = 200 * 1024 * 1024
 
 # 工具配置
 ToolInfo = namedtuple("ToolInfo", ["env_name", "default_dir_name", "executable"])
