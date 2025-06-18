@@ -49,7 +49,7 @@ class Resp(__Indicator):
     name = "平均响应时间(ms)"
 
     def __init__(self, resp: float):
-        self._value = round(resp)
+        self._value = round(resp,3) # 保留3位小数
 
 
 class Continuity(__Indicator):
