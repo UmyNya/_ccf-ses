@@ -45,9 +45,9 @@
         </parameters>
     </case>
 
-    <!-- QQ_PHOTO_ALBUM -->
+    <!-- 互联网应用社交媒体图片服务 -->
     <!-- category 在 constants.py 中的 CaseCategory 类中定义。 -->
-    <case id="PHOTO_PERF" category="performance" name="互联网相册性能测试（IOPS，带宽，延迟）">
+    <case id="PHOTO_PERF" category="performance" name="互联网应用社交媒体图片服务性能测试（IOPS，带宽，延迟）">
         <parameters>
             <parameter name="vdbench_dir">$$vdbench_dir</parameter>
             <parameter name="config_template_file">vdbench/photo_album/photo_80r20w.txt</parameter>

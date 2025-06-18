@@ -20,7 +20,7 @@
         <case id="EXP_001" required="True" />
     </scene>
 
-    <!-- QQ_PHOTO_ALBUM -->
+    <!-- 互联网应用社交媒体图片服务 -->
     <scene name="PHOTO_ALBUM">
         <!-- <case id="PHOTO_READ" required="True" />
         <case id="PHOTO_WRITE" required="True" />
