@@ -144,8 +144,8 @@ class Suite:
         min_data_size_kb = 0
         
         # 获取预埋最小数据量
-        if self.name == "QQ_PHOTO_ALBUM":
-            min_data_size_kb = max(host_total_mem * 2, storage_mem * 5, int(storage_cap * 0.6))
+        if self.name == "PHOTO_ALBUM":
+            min_data_size_kb = max(host_total_mem * 2, storage_mem * 5, int(storage_cap * 0.1))
         else:
             min_data_size_kb = max(host_total_mem * 2, storage_mem * 5, int(storage_cap * 0.1))
         
@@ -171,7 +171,10 @@ class Suite:
 
         fsd_group_number = int(fsd_group_number)
         fsd_width = int(fsd_width)
-        data_size = fsd_width ** VDBENCH_DEPTH * fsd_group_number * VDBENCH_FSD_GROUP_SIZE
+        if self.name == "PHOTO_ALBUM":
+            data_size = fsd_width ** VDBENCH_DEPTH * fsd_group_number * VDBENCH_FSD_GROUP_SIZE_PHOTO_ALBUM
+        else:
+            data_size = fsd_width ** VDBENCH_DEPTH * fsd_group_number * VDBENCH_FSD_GROUP_SIZE
         return data_size
 
     def load_cases(self):
